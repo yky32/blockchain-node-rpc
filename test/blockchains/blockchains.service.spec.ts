@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BlockchainsService } from './blockchains.service';
+import { BlockchainsService } from '../../src/blockchains/blockchains.service';
 
 describe('BlockchainsService', () => {
   let service: BlockchainsService;
