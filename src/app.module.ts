@@ -1,10 +1,16 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TransactionsModule } from './transactions/transactions.module';
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { TransactionsModule } from "./transactions/transactions.module";
 
 @Module({
-  imports: [TransactionsModule],
+  imports: [
+    TransactionsModule, 
+    ConfigModule.forRoot({
+      isGlobal: true,
+    })
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

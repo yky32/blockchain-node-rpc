@@ -1,15 +1,20 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class GetBlockIoClient {
+  @Inject(ConfigService)
+  public config: ConfigService;
+
   constructor(private readonly httpService: HttpService) {}
 
   async execute(address: string) {
+    const apiKey: string = this.config.get('API_KEY');
     const config = {
       headers: {
-        'x-api-key': '60a12f63-a1c8-446b-8cc6-a94c1a0f62a2',
+        'x-api-key': apiKey,
       },
     };
     const data = {
