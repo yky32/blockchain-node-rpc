@@ -4,6 +4,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { TransactionsModule } from "./transactions/transactions.module";
 import { getEnvPath } from "./common/helper/env.helper";
+import { WalletsModule } from './wallets/wallets.module';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
@@ -13,7 +14,8 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
     ConfigModule.forRoot({
       envFilePath,
       isGlobal: true
-    })
+    }),
+    WalletsModule
   ],
   controllers: [AppController],
   providers: [AppService]
