@@ -2,6 +2,16 @@ import { HttpService } from '@nestjs/axios';
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
+import { Client } from 'litecoin';
+
+const client = new Client({
+  host: 'localhost',
+  port: 19443,
+  user: 'admin',
+  pass: '123456',
+  timeout: 30000,
+  ssl: false
+});
 
 @Injectable()
 export class GetBlockIoClient {
@@ -31,7 +41,7 @@ export class GetBlockIoClient {
     if (response) {
       return response.data;
     } else {
-      // exception here.
+      throw new Error('Response error.');
     }
   }
 }
