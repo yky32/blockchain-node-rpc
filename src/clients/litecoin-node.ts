@@ -10,12 +10,6 @@ const client = new Client({
   ssl: false,
 });
 
-const callback = function (err, data) {
-  if (err) console.error(err);
-  console.log('data--', data);
-  return data;
-};
-
 @Injectable()
 export class LitecoinNodeClient {
 
@@ -53,5 +47,32 @@ export class LitecoinNodeClient {
     return new Promise((resolve, reject) => {
 
     })
+  }
+
+
+  listAllBalances() {
+    return new Promise((resolve, reject) => {
+      client.listAddressGroupings((err, data) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        }
+        console.log('data=', data);
+        resolve(data);
+      });
+    })
+  }
+
+  findAccountByAddress(address: string) {
+    return new Promise((resolve, reject) => {
+      client.getAccount('', (err, data) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        }
+        console.log('data=', data);
+        resolve(data);
+      });
+    });
   }
 }

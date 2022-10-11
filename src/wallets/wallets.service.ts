@@ -1,26 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { CreateWalletDto } from './dto/create-wallet.dto';
-import { UpdateWalletDto } from './dto/update-wallet.dto';
+import { Injectable } from "@nestjs/common";
+import { LitecoinNodeClient } from "../clients/litecoin-node";
 
 @Injectable()
 export class WalletsService {
-  create(createWalletDto: CreateWalletDto) {
-    return 'This action adds a new wallet';
+  constructor(private readonly litecoinNodeClient: LitecoinNodeClient) {
   }
 
-  findAll() {
-    return `This action returns all wallets`;
+  createAddress() {
+    return this.litecoinNodeClient.createNewAddress();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} wallet`;
+  findAllBalances() {
+    return this.litecoinNodeClient.listAllBalances();
   }
 
-  update(id: number, updateWalletDto: UpdateWalletDto) {
-    return `This action updates a #${id} wallet`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} wallet`;
+  findAccountByAddress(address: string) {
+    return this.litecoinNodeClient.findAccountByAddress(address);
   }
 }

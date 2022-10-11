@@ -1,12 +1,9 @@
-import { Injectable } from "@nestjs/common";
-import { LitecoinNodeClient } from "src/clients/litecoin-node";
+import { Injectable } from '@nestjs/common';
+import { LitecoinNodeClient } from 'src/clients/litecoin-node';
 
 @Injectable()
 export class TransactionsService {
-  constructor(
-    private readonly litecoinNodeClient: LitecoinNodeClient
-  ) {
-  }
+  constructor(private readonly litecoinNodeClient: LitecoinNodeClient) {}
 
   findByAccount(account: string) {
     return this.litecoinNodeClient.listTransactionsByAccount(account);
