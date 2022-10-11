@@ -2,16 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
-import { Client } from 'litecoin';
 
-const client = new Client({
-  host: 'localhost',
-  port: 19443,
-  user: 'admin',
-  pass: '123456',
-  timeout: 30000,
-  ssl: false
-});
 
 @Injectable()
 export class GetBlockIoClient {
@@ -20,7 +11,7 @@ export class GetBlockIoClient {
 
   constructor(private readonly httpService: HttpService) {}
 
-  async execute(address: string) {
+  async execute() {
     const apiKey: string = this.config.get('API_KEY');
     const config = {
       headers: {

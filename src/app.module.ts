@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TransactionsModule } from './transactions/transactions.module';
 import { getEnvPath } from './common/helper/env.helper';
+import { LitecoinNodeClient } from './clients/litecoin-node';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
@@ -16,6 +17,6 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, LitecoinNodeClient],
 })
 export class AppModule {}

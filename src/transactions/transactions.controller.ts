@@ -5,11 +5,8 @@ import { TransactionsService } from './transactions.service';
 export class TransactionsController {
   constructor(private readonly transactionsService: TransactionsService) {}
 
-  @Get(':address/:network')
-  findOne(
-    @Param('address') address: string,
-    @Param('network') network: string,
-  ) {
-    return this.transactionsService.findOne(address);
+  @Get('test')
+  findOne() {
+    return this.transactionsService.findOne();
   }
 }
