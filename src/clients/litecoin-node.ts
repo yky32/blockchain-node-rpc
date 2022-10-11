@@ -1,31 +1,41 @@
 import { Injectable } from "@nestjs/common";
-import { Client } from 'litecoin';
+import { Client } from "litecoin";
 
 const client = new Client({
-  host: 'localhost',
+  host: "localhost",
   port: 19443,
-  user: 'admin',
-  pass: '123456',
+  user: "admin",
+  pass: "123456",
   timeout: 30000,
-  ssl: false,
+  ssl: false
 });
 
-const callback = function(err, data) {
-      if (err) console.error(err);
-        console.log('Data: ' + data);
-}
+const callback = function(err, data) : string {
+  if (err) console.error(err);
+  console.log("data--", data);
+  return data
+};
 
 @Injectable()
 export class LitecoinNodeClient {
 
 
+  listTransactionsByAccount(account: string, count: number = 0, from: number = 10) {
+    client.listTransactions(
+      account,
+      count,
+      from,
+      callback
+    );
+  }
 
-  execute() {
-      client.listTransactions(
-              "QiufNxo8yBPtrdYxgZsw1ek8ZACL4ooYtT",
-              0, 10,
-              callback
-      );
-  
+  async createNewAddress() {
+    return new Promise((resolve, reject) => {
+      client.getNewAddress("", callback);
+    })
+  }
+
+  listTransactionsByAddress() {
+
   }
 }

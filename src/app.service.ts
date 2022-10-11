@@ -1,14 +1,9 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { LitecoinNodeClient } from './clients/litecoin-node';
+import { Injectable } from "@nestjs/common";
+
 @Injectable()
 export class AppService {
 
-  constructor(
-    private readonly litecoinNodeClient: LitecoinNodeClient
-  ) {}
-
   getHello(): string {
-    this.litecoinNodeClient.execute()
-    return 'Hello World!';
+    return "Hello World!";
   }
 }

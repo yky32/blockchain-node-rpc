@@ -1,12 +1,22 @@
-import { Injectable } from '@nestjs/common';
-import { GetBlockIoClient } from 'src/clients/getblockio.client';
-import { LitecoinNodeClient } from 'src/clients/litecoin-node';
+import { Injectable } from "@nestjs/common";
+import { LitecoinNodeClient } from "src/clients/litecoin-node";
 
 @Injectable()
 export class TransactionsService {
-  constructor(private readonly getBlockIoClient: GetBlockIoClient) {}
+  constructor(
+    private readonly litecoinNodeClient: LitecoinNodeClient
+  ) {
+  }
 
-  findOne() {
-    return this.getBlockIoClient.execute();
+  findByAccount(account: string) {
+    return this.litecoinNodeClient.listTransactionsByAccount(account);
+  }
+
+  findByAddress(address: string) {
+    return this.litecoinNodeClient.listTransactionsByAddress();
+  }
+
+  createNewAddress() {
+    return this.litecoinNodeClient.createNewAddress();
   }
 }
