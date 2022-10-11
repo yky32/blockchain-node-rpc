@@ -43,13 +43,6 @@ export class LitecoinNodeClient {
     });
   }
 
-  listTransactionsByAddress() {
-    return new Promise((resolve, reject) => {
-
-    })
-  }
-
-
   listAllBalances() {
     return new Promise((resolve, reject) => {
       client.listAddressGroupings((err, data) => {
@@ -63,9 +56,9 @@ export class LitecoinNodeClient {
     })
   }
 
-  findAccountByAddress(address: string) {
+  getBlockCount() {
     return new Promise((resolve, reject) => {
-      client.getAccount('', (err, data) => {
+      client.getBlockCount((err, data) => {
         if (err) {
           console.error(err);
           reject(err);
@@ -73,6 +66,45 @@ export class LitecoinNodeClient {
         console.log('data=', data);
         resolve(data);
       });
-    });
+    })
+  }
+
+  sendToAddress(address: string, amount: number) {
+    return new Promise((resolve, reject) => {
+      client.sendToAddress(address, amount, (err, data) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        }
+        console.log('data=', data);
+        resolve(data);
+      });
+    })
+  }
+
+  getTransaction(txid: string) {
+    return new Promise((resolve, reject) => {
+      client.getTransaction(txid, (err, data) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        }
+        console.log('data=', data);
+        resolve(data);
+      });
+    })
+  }
+
+  listReceivedByAddress(address: string) {
+    return new Promise((resolve, reject) => {
+      client.listReceivedByAddress(6,true,true,address, (err, data) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        }
+        console.log('data=', data);
+        resolve(data);
+      });
+    })
   }
 }

@@ -10,7 +10,7 @@ export class WalletsController {
   constructor(private readonly walletsService: WalletsService) {
   }
 
-  @Post("/address")
+  @Post("address")
   create() {
     return this.walletsService.createAddress();
   }
@@ -20,8 +20,10 @@ export class WalletsController {
     return this.walletsService.findAllBalances();
   }
 
-  @Get("account/:address")
-  findAccountByAddress(@Param("address") address: string) {
-    return this.walletsService.findAccountByAddress(address);
+
+  @Get("address/:address/received")
+  listReceivedByAddress(@Param("address") address: string) {
+    return this.walletsService.listReceivedByAddress(address);
   }
+
 }

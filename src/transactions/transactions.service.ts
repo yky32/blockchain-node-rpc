@@ -1,19 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { LitecoinNodeClient } from 'src/clients/litecoin-node';
+import { CreateTransactionDto } from "./dto/create-transaction.dto";
 
 @Injectable()
 export class TransactionsService {
   constructor(private readonly litecoinNodeClient: LitecoinNodeClient) {}
 
-  findByAccount(account: string) {
-    return this.litecoinNodeClient.listTransactionsByAccount(account);
+  getBlockCount() {
+    return this.litecoinNodeClient.getBlockCount();
   }
 
-  findByAddress(address: string) {
-    return this.litecoinNodeClient.listTransactionsByAddress();
+  sendToAddress({address, amount}: CreateTransactionDto) {
+    return this.litecoinNodeClient.sendToAddress(address, amount);
   }
 
-  createNewAddress() {
-    return this.litecoinNodeClient.createNewAddress();
+  getOne(txid: string) {
+    return this.litecoinNodeClient.getTransaction(txid);
   }
 }

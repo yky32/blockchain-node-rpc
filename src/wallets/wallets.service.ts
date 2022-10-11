@@ -14,7 +14,7 @@ export class WalletsService {
     return this.litecoinNodeClient.listAllBalances();
   }
 
-  findAccountByAddress(address: string) {
-    return this.litecoinNodeClient.findAccountByAddress(address);
+  listReceivedByAddress(address: string) {
+    return this.litecoinNodeClient.listReceivedByAddress(address)
   }
 }
