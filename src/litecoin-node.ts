@@ -73,14 +73,16 @@ export class LitecoinNodeClient {
   listTxnsByAddress(accountName: string, address: string) {
     let path = `/wallet/${accountName}`;
     return new Promise((resolve, reject) => {
-      litecoinClient.listReceivedByAddress(1, true, true, address, function(err, data) {
+      // TODO: will throw error when adding arguments, its abnormal behavior
+      // TODO: workaround-> array.filter()
+      litecoinClient.listReceivedByAddress(function(err, data) {
         if (err) {
           console.error(err);
           reject(err);
         }
-        console.log("data =>", data);
-        resolve(data);
-      }, path);
+        console.log("data =>", data)
+        resolve(data.filter(txn => txn.address == address));
+      }, '/wallet/TA');
     });
   }
 

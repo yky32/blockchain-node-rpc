@@ -36,14 +36,6 @@ export class AppController {
     return this.litecoinNodeClient.getBalance(accountName);
   }
 
-  @Get("wallet/:accountName/:address")
-  listTxnsByAddress(
-    @Param("accountName") accountName: string,
-    @Param("address") address: string
-  ) {
-    this.litecoinNodeClient.listTxnsByAddress(accountName, address);
-  }
-
   @Post("wallet/:accountName/send")
   sendToAddress(
     @Param("accountName") accountName: string,
@@ -52,7 +44,7 @@ export class AppController {
     return this.litecoinNodeClient.sendToAddress(accountName, dto.address, dto.amount);
   }
 
-  @Get("/:accountName/txn/:txId")
+  @Get("/txn/:accountName/id/:txId")
   listTxnsById(
     @Param("accountName") accountName: string,
     @Param("txId") txId: string
@@ -61,8 +53,17 @@ export class AppController {
   }
 
 
+  @Get("txn/:accountName/address/:address")
+  listTxnsByAddress(
+      @Param("accountName") accountName: string,
+      @Param("address") address: string
+  ) {
+    return this.litecoinNodeClient.listTxnsByAddress(accountName, address);
+  }
+
+
   // __ Wrapped Up with listTxnsByAddress and listTxnsById
-  @Get("txn-detail/:address")
+  @Get("txn/detail/:address")
   listTxnsDetailByAddress(
     @Param("address") address: string
   ) {
