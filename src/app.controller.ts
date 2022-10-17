@@ -68,7 +68,7 @@ export class AppController {
       @Param("accountName") accountName: string,
       @Param("address") address: string
   ) {
-    this.litecoinNodeClient.listTxnsDetailByAddress(accountName, address);
+    return this.litecoinNodeClient.listTxnsDetailByAddress(accountName, address);
   }
 
 }

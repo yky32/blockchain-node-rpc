@@ -113,4 +113,15 @@ export class LitecoinNodeClient {
       }, path);
     });
   }
+
+  async listTxnsDetailByAddress(accountName: string, address: string) {
+    let items = await this.listTxnsByAddress(accountName, address)
+    let txids = items[0].txids
+    items[0].details = []
+    for (const txid of txids) {
+      const detail = await this.listTxnsById(accountName, txid)
+      items[0].details.push(detail)
+    }
+    return items;
+  }
 }
