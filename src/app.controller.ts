@@ -63,11 +63,12 @@ export class AppController {
 
 
   // __ Wrapped Up with listTxnsByAddress and listTxnsById
-  @Get("txn/detail/:address")
+  @Get("txn/detail/:accountName/address/:address")
   listTxnsDetailByAddress(
-    @Param("address") address: string
+      @Param("accountName") accountName: string,
+      @Param("address") address: string
   ) {
-    this.litecoinNodeClient.listTxnsDetailByAddress(address);
+    this.litecoinNodeClient.listTxnsDetailByAddress(accountName, address);
   }
 
 }

@@ -82,7 +82,7 @@ export class LitecoinNodeClient {
         }
         console.log("data =>", data)
         resolve(data.filter(txn => txn.address == address));
-      }, '/wallet/TA');
+      }, path);
     });
   }
 
@@ -98,10 +98,6 @@ export class LitecoinNodeClient {
         resolve(data);
       }, path);
     });
-  }
-
-  listTxnsDetailByAddress(address: string) {
-
   }
 
   sendToAddress(accountName: string, address: string, amount: number) {
