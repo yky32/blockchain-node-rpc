@@ -1,3 +1,5 @@
+docker build . -t ltc/litecoin:v0.18.1
+
 docker run -itd --restart=unless-stopped -p 19443:19443 -p 19444:19444 ltc/litecoin:v0.18.1 -regtest=1 -server=1 -rpcuser=admin -rpcpassword=123456 -txindex=1 -paytxfee=0.00005 -rpcport=19443 -rpcallowip=0.0.0.0/0 -port=19444 -rpcbind=0.0.0.0:19443
 
 
