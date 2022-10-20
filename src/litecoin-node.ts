@@ -3,7 +3,8 @@ import { Client } from "../src/ext";
 
 
 const litecoinClient = new Client({
-  host: "127.0.0.1",
+  // use "node" as host when running in docker-compose mode and as 127.0.0.1 when running the services individually
+  host: "node",
   port: 19443,
   user: "admin",
   pass: "123456",

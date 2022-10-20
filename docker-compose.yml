@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  microservice:
+    image: litecoin-ms:latest
+    ports:
+      - "3000:3000"
+  node:
+    hostname: node
+    image: ltc/litecoin:v0.21.2.1
+    ports:
+      - "19443:19443"
+      - "19444:19444"
+    command: -regtest=1 -server=1 -rpcuser=admin -rpcpassword=123456 -txindex=1 -paytxfee=0.00005 -rpcport=19443 -rpcallowip=0.0.0.0/0 -port=19444 -rpcbind=0.0.0.0:19443
+
