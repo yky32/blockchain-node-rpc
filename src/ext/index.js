@@ -5,6 +5,8 @@ var rpc = require('./jsonrpc');
 // Client
 // ===----------------------------------------------------------------------===//
 function Client (opts) {
+  console.log("MADE IT HERE")
+  console.log(opts)
   this.rpc = new rpc.Client(opts);
 }
 

@@ -12,6 +12,8 @@ const litecoinClient = new Client({
   ssl: false
 });
 
+console.log(litecoinClient)
+
 @Injectable()
 export class LitecoinNodeClient {
 

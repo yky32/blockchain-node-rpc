@@ -2,6 +2,9 @@ var http = require('http');
 var https = require('https');
 
 var Client = function (opts) {
+  
+  console.log(opts)
+
   this.opts = opts || {};
   this.http = this.opts.ssl ? https : http;
 };
